@@ -1,73 +1,106 @@
 'use strict'
-const apiSeedsKey = 'bxnrdxpxDrum1aPjAmctaNH7r7iqfHpaemLTTBikyqzMhNsV8PSFNOVbfsySqNVI'
+const openWeatherKey = '527be69af9e0687cce86953198b12581'
+const mapsKey = 'AIzaSyDZO7BmldQ7TPGohXTa-PxNaoF81D7Ofuw'
 function startApp() {
-    watchForm()
-
-}
-function getMusic(artist) {
-    fetch(`https://orion.apiseeds.com/api/music/search/?q=${artist}&apikey=${apiSeedsKey}&limit=10`)
-        .then(response => response.json())
-        .then(data => {
-            console.log(data)
-            renderMusic(data)
-
-        })
+  watchForm()
 
 
 }
-
-function getEvent(artist) {
-    fetch(`https://www.eventbriteapi.com/v3/events/search/?q=${artist}`, {
-        headers: {
-            Authorization: `Bearer X5D2YDZ34BF4WC3AHP36`
-        }
+function getWeather(location) {
+  const toFetch = `https://api.openweathermap.org/data/2.5/weather?q=${location}&APPID=${openWeatherKey}`
+  fetch(toFetch)
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw new Error(response.message);
     })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data)
-            renderEvent(data)
+    .then(data => displayWeather(data))
+    .catch(err => {
+      $('#js-error-message').text(`Something went wrong: ${err.message}`);
+    });
 
-        })
+  console.log('getWeather loaded')
+
 }
 
-function renderMusic(data) {
-    $('#results-music').empty();
-    $('#music').removeClass('hidden')
-    for (let i = 0; i < data.result.length; i++) {
-        $('#results-music').append(
-            `<li>
-<h3><img src="${data.result[i].cover}" target="_blank">${data.result[i].title}</h3>
-    <p>${data.result[i].artist}</p>
-    <p>${data.result[i].album}</p>
-    </li>`)
+function displayWeather(data) {
+  $('#result-weather').empty();
+  $('#js-error-message').empty();
+  $('#result-weather').append(
+    `<h3>${data.name}</h3>
+    <li> Humidity: ${data.main.humidity} %</li>
+    <li> Currently the day has a ${data.weather[0].description}</li>
+    <li> The current temperature is: ${data.main.temp} K</li>`
+
+  );
+
+  console.log(data);
+  console.log('renderWeather loaded');
+}
+
+
+var map;
+var service;
+var infowindow;
+
+function initMap(location) {
+  var sydney = new google.maps.LatLng(-33.867, 151.195);
+
+  infowindow = new google.maps.InfoWindow();
+
+  map = new google.maps.Map(
+
+    document.getElementById('map-area'), { center: sydney, zoom: 15 });
+
+  var request = {
+    query: location,
+    fields: ['name', 'geometry'],
+    type: 'park',
+  };
+
+  service = new google.maps.places.PlacesService(map);
+
+  service.textSearch(request, function (results, status) {
+    if (status === google.maps.places.PlacesServiceStatus.OK) {
+      for (var i = 0; i < results.length; i++) {
+        createMarker(results[i]);
+      }
+
+      map.setCenter(results[0].geometry.location);
     }
-}
-
-function renderEvent(data) {
-    $('#results-event').empty();
-    $('#event').removeClass('hidden')
-    for (let i = 0; i < data.events.length; i++) {
-        $('#results-event').append(
-            `<li>
-<h3><img src="${data.events[i].logo.url}" target="_blank">${data.events[i].name.text}</h3>
-    <p>${data.events[i].summary}</p>
-    <p>${data.events[i].album}</p>
-    </li>`)
-    }
+  });
+  $('#result').show();
+  console.log('initMap Loaded')
 
 }
 
+function createMarker(place) {
+  var marker = new google.maps.Marker({
+    map: map,
+    position: place.geometry.location
+  });
+
+  google.maps.event.addListener(marker, 'click', function () {
+    infowindow.setContent(place.name);
+    infowindow.open(map, this);
+  });
+}
 
 
 function watchForm() {
-    $('form').submit(event => {
-        event.preventDefault();
-        let artist = $('.artist-name').val();
-        $('#results').addClass('hidden');
-        getEvent(artist)
-        getMusic(artist)
+  $('#result').hide();
+
+  $('form').submit(event => {
+    event.preventDefault();
+    let location = $('.location-name').val();
+    initMap(location);
+    getWeather(location);
 
 
-    });
+
+
+
+  });
 }
 $(startApp)

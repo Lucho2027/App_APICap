@@ -1,35 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>GitHub Users repository Search</title>
+    <title>Let's Go Outside!</title>
     <link rel="stylesheet" href="index.css">
-    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 </head>
+
 <body>
-    <div class="container">
-        <h1>GitHub Users repository Search</h1>
+    <class="container">
+        <h1>Parks Nearby</h1>
         <fieldset>
-         <form action="/action_page.php">
-          From which user are you intrested on seeing their repository?
-          <input class="artist-name" type="text" required placeholder="Enter artist name here">
-          <input type="submit">
-        </form>
+            <form action="/action_page.php">
+                Find awesome parks:
+                <input class="location-name" type="text" required placeholder="Enter location here">
+                <input type="submit">
+            </form>
         </fieldset>
         <p id="js-error-message" class="error-message"></p>
-        <section id="music" class="hidden">
-            <h2>Music results</h2>
-            <ul id="results-music">
-            </ul>
-        </section>
-        <section id="event" class="hidden">
-            <h2>Event results</h2>
-            <ul id="results-event">
-            </ul>
+        <section id="result" class="hidden">
+            <section id="weather">
+                <h2>Weather Forecast</h2>
+                <ul id="result-weather">
+                </ul>
+            </section>
+            <section id="map">
+                <h2>Map</h2>
+            </section>
+            <div id="map-area">
+
+            </div>
         </section>
     </div>
+
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZO7BmldQ7TPGohXTa-PxNaoF81D7Ofuw&libraries=places&callback=initMap"
+        async defer></script>
     <script src="index.js"></script>
 </body>
+
 </html>
