@@ -18,7 +18,9 @@ function getWeather(location) {
     })
     .then(data => displayWeather(data))
     .catch(err => {
+      
       $('#js-error-message').text(`Something went wrong: ${err.message}`);
+      $('#result').empty();
     });
 
   console.log('getWeather loaded')
