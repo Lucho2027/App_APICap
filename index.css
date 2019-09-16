@@ -6,8 +6,72 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
+  color:#D9C6B0;
+  font-family: 'Roboto Slab', 'Megrim';
  
 }
+
+.hidden{
+  display:none;
+
+}
+
+.tooltip{
+  width:100px;
+}
+
+h1, h2, h3 {
+  font-family: 'Megrim';
+
+}
+h1, p, #result{
+  z-index: 10;
+  
+}
+fieldset{
+  z-index: 10;
+  border:  0px;
+
+}
+.intro{
+  z-index: 10;
+  background-color:  rgba(63, 47, 33, 0.60);
+  padding: 25px;
+}
+
+.container{
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+  
+  
+}
+video{
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: inherit 1;
+  
+}
+
+@media (max-width: 520px){
+
+  video{
+    display:none;
+
+  }
+  .container{
+    min-height:100%;
+    background: url('https://i.imgur.com/pvLDTDQ.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+
+}
+
   
   
   
@@ -20,3 +84,23 @@ html, body {
         width: 100%;
         
       }
+/* Color Theme Swatches in Hex */
+.Father-teaching-his-son-cycling-at-park-1-hex { color: #BFB85A; }
+.Father-teaching-his-son-cycling-at-park-2-hex { color: #D9CA82; }
+.Father-teaching-his-son-cycling-at-park-3-hex { color: #D9C6B0; }
+.Father-teaching-his-son-cycling-at-park-4-hex { color: #402F21; }
+.Father-teaching-his-son-cycling-at-park-5-hex { color: #BF372A; }
+
+/* Color Theme Swatches in RGBA */
+.Father-teaching-his-son-cycling-at-park-1-rgba { color: rgba(191, 184, 89, 1); }
+.Father-teaching-his-son-cycling-at-park-2-rgba { color: rgba(216, 202, 130, 1); }
+.Father-teaching-his-son-cycling-at-park-3-rgba { color: rgba(216, 198, 175, 1); }
+.Father-teaching-his-son-cycling-at-park-4-rgba { color: rgba(63, 47, 33, 1); }
+.Father-teaching-his-son-cycling-at-park-5-rgba { color: rgba(191, 54, 42, 1); }
+
+/* Color Theme Swatches in HSLA */
+.Father-teaching-his-son-cycling-at-park-1-hsla { color: hsla(56, 44, 55, 1); }
+.Father-teaching-his-son-cycling-at-park-2-hsla { color: hsla(50, 53, 68, 1); }
+.Father-teaching-his-son-cycling-at-park-3-hsla { color: hsla(33, 34, 76, 1); }
+.Father-teaching-his-son-cycling-at-park-4-hsla { color: hsla(28, 31, 19, 1); }
+.Father-teaching-his-son-cycling-at-park-5-hsla { color: hsla(5, 63, 45, 1); }

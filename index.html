@@ -7,35 +7,47 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Let's Go Outside!</title>
     <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css?family=Megrim|Roboto+Slab&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <class="container">
-        <h1>Lets find exciting places around!</h1>
-        <fieldset>
-            <form >
-                Find awesome parks and hiking trails:
-                <input class="location-name" type="text" required placeholder="Enter location here">
-                <input type="submit">
-            </form>
-        </fieldset>
-        <p id="js-error-message" class="error-message"></p>
-        <section id="result" class="hidden">
-            <section id="weather">
-                <h2>Weather Forecast</h2>
-                <ul id="result-weather">
-                </ul>
-            </section>
-            <section id="map">
-                <h2>Map</h2>
-            </section>
-            <div id="map-area">
 
-            </div>
-        </section>
+    <section class="container">
+
+
+        <video autoplay loop muted>
+            <source src="coverr-sunrise-1563948708950.mp4" type="video/mp4">
+        </video>
+        <div class="intro">
+            <h1>Lets find exciting places around!</h1>
+            <fieldset>
+                <form>
+                    Find awesome parks and hiking trails:
+                    <input class="location-name" type="text" required placeholder="Enter location here">
+                    <input type="submit">
+                </form>
+            </fieldset>
+            <p id="js-error-message" class="error-message"></p>
+            <section id="result" class="hidden">
+                <section id="weather">
+                    <h2>Weather Forecast</h2>
+                    <ul id="result-weather">
+                    </ul>
+                </section>
+                <section id="map">
+                    <h2>Map</h2>
+                    <div id="map-area">
+
+                    </div>
+                </section>
+
+            </section>
+        </div>
+    </section>
     </div>
+
 
     <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZO7BmldQ7TPGohXTa-PxNaoF81D7Ofuw&libraries=places&callback=initMap"

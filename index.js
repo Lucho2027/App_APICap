@@ -8,7 +8,7 @@ function startApp() {
 
 }
 function getWeather(location) {
-  const toFetch = `https://api.openweathermap.org/data/2.5/weather?q=${location}&APPID=${openWeatherKey}`
+  const toFetch = `https://api.openweathermap.org/data/2.5/weather?q=${location},US&APPID=${openWeatherKey}`
   fetch(toFetch)
     .then(response => {
       if (response.ok) {
@@ -16,11 +16,16 @@ function getWeather(location) {
       }
       throw new Error(response.message);
     })
-    .then(data => displayWeather(data))
+    .then(data => {
+      displayWeather(data);
+      $('#result').show();
+      initMap(location);
+
+    })
     .catch(err => {
-      
-      $('#js-error-message').text(`Something went wrong: ${err.message}`);
-      $('#result').empty();
+      console.log(err)
+      $('#js-error-message').text(`Hey the location was not found! Try Again!`);
+      $('#result').hide();
     });
 
   console.log('getWeather loaded')
@@ -28,7 +33,7 @@ function getWeather(location) {
 }
 
 function displayWeather(data) {
-  var convToF = (parseInt((`${data.main.temp}`) - 273.15)*(9/5)+32);
+  var convToF = Math.round(parseInt((`${data.main.temp}`) - 273.15)*(9/5)+32);
   $('#result-weather').empty();
   $('#js-error-message').empty();
   $('#result-weather').append(
@@ -38,7 +43,7 @@ function displayWeather(data) {
     <li> The current temperature is: ${convToF} F</li>`
 
   );
-
+  
   console.log(data);
   console.log('renderWeather loaded');
 }
@@ -52,7 +57,7 @@ function initMap(location) {
   var unitedStates = new google.maps.LatLng(37.0902, 95.7129);
 
   infowindow = new google.maps.InfoWindow();
-
+console.log(document.getElementById('map-area'))
   map = new google.maps.Map(
 
     document.getElementById('map-area'), { center: unitedStates, zoom: 10 });
@@ -77,7 +82,7 @@ function initMap(location) {
     
   
   });
-  $('#result').show();
+
   
   console.log('initMap Loaded')
   
@@ -91,7 +96,14 @@ function createMarker(place) {
   });
 
   google.maps.event.addListener(marker, 'click', function () {
-    infowindow.setContent(place.name);
+    console.log(place)
+    let toolTipContent=''
+    if (place.photos.length > 0){
+      
+        toolTipContent += `<img class='tooltip' src='${place.photos[0].getUrl()}'/>`   
+    }
+     toolTipContent += `Name: ${place.name}`
+    infowindow.setContent(toolTipContent);
     infowindow.open(map, this);
   });
 }
@@ -101,13 +113,14 @@ function createMarker(place) {
 
 
 function watchForm() {
-  $('#result').hide();
-
-  $('form').submit(event => {
+    $('form').submit(event => {
     event.preventDefault();
     let location = $('.location-name').val();
-    initMap(location);
+    
     getWeather(location);
+    
+    
+    
 
 
 
