@@ -4,6 +4,8 @@ const mapsKey = 'AIzaSyDZO7BmldQ7TPGohXTa-PxNaoF81D7Ofuw'
 function startApp() {
   watchForm()
   $('#result').hide();
+  $('.sticky').hide();
+  $('.sticky-bot').hide();
 
 
 }
@@ -19,6 +21,8 @@ function getWeather(location) {
     .then(data => {
       displayWeather(data);
       $('#result').show();
+      $('.sticky').show();
+      $('.sticky-bot').show();
       initMap(location);
 
     })
@@ -33,7 +37,7 @@ function getWeather(location) {
 }
 
 function displayWeather(data) {
-  var convToF = Math.round(parseInt((`${data.main.temp}`) - 273.15)*(9/5)+32);
+  var convToF = Math.round(parseInt((`${data.main.temp}`) - 273.15) * (9 / 5) + 32);
   $('#result-weather').empty();
   $('#js-error-message').empty();
   $('#result-weather').append(
@@ -43,7 +47,7 @@ function displayWeather(data) {
     <li> The current temperature is: ${convToF} F</li>`
 
   );
-  
+
   console.log(data);
   console.log('renderWeather loaded');
 }
@@ -57,37 +61,51 @@ function initMap(location) {
   var unitedStates = new google.maps.LatLng(37.0902, 95.7129);
 
   infowindow = new google.maps.InfoWindow();
-console.log(document.getElementById('map-area'))
+  console.log(document.getElementById('map-area'))
   map = new google.maps.Map(
 
-    document.getElementById('map-area'), { center: unitedStates, zoom: 10 });
+    document.getElementById('map-area'), { center: unitedStates, zoom: 13 });
 
   var request = {
     query: location,
-    fields: ['name', 'geometry','placeId'],
-    type: 'park'
+    fields: ['name', 'geometry', 'placeId'],
+    type: 'park',
+
   };
 
   service = new google.maps.places.PlacesService(map);
-  
+
 
   service.textSearch(request, function (results, status) {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
-      for (var i = 0; i < results.length; i++) {
+      $('.places-result').empty();
+      $('#js-error-message').empty();
+      for (var i = 0; i < 10; i++) {
         createMarker(results[i]);
+        placesResult(results[i]);
       }
 
       map.setCenter(results[0].geometry.location);
     }
-    
-  
+
+
   });
 
-  
+
   console.log('initMap Loaded')
-  
+
 
 }
+function placesResult(place) {
+  let content = '';
+  if (place.photos && place.photos.length > 0) {
+    content += `<img class='tooltip' src='${place.photos[0].getUrl()}'/>`
+  }
+  $('.places-result').append(
+    `<li id="${place.id}"><h3>${place.name}</h3> <p>${place.formatted_address}</p>
+    <p>${place.rating} out of 5 with a total of ${place.user_ratings_total} reviews</p> ${content}</li>`)
+}
+
 
 function createMarker(place) {
   var marker = new google.maps.Marker({
@@ -97,12 +115,13 @@ function createMarker(place) {
 
   google.maps.event.addListener(marker, 'click', function () {
     console.log(place)
-    let toolTipContent=''
-    if (place.photos.length > 0){
-      
-        toolTipContent += `<img class='tooltip' src='${place.photos[0].getUrl()}'/>`   
+    let toolTipContent = ''
+    if (place.photos && place.photos.length > 0) {
+
+      toolTipContent += `<a href="#${place.id}"}>Name: ${place.name}</a>`
     }
-     toolTipContent += `Name: ${place.name}`
+    
+
     infowindow.setContent(toolTipContent);
     infowindow.open(map, this);
   });
@@ -113,14 +132,15 @@ function createMarker(place) {
 
 
 function watchForm() {
-    $('form').submit(event => {
+
+  $('form').submit(event => {
     event.preventDefault();
     let location = $('.location-name').val();
-    
+
     getWeather(location);
-    
-    
-    
+
+
+
 
 
 

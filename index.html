@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Let's Go Outside!</title>
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+        integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Megrim|Roboto+Slab&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
@@ -22,11 +24,12 @@
         </video>
         <div class="intro">
             <h1>Lets find exciting places around!</h1>
+            <div class="sticky"><a href="#">Top</a></div>
             <fieldset>
                 <form>
                     Find awesome parks and hiking trails:
-                    <input class="location-name" type="text" required placeholder="Enter location here">
-                    <input type="submit">
+                    <input class="location-name" type="text" required placeholder="Example: Bloomington, IL">
+                    <input type="submit" class="button">
                 </form>
             </fieldset>
             <p id="js-error-message" class="error-message"></p>
@@ -38,14 +41,27 @@
                 </section>
                 <section id="map">
                     <h2>Map</h2>
+
                     <div id="map-area">
 
+
                     </div>
+                    <ul class="places-result">
+                    </ul>
                 </section>
 
             </section>
         </div>
+
     </section>
+    <footer class="sticky-bot">
+        <ul class="social">
+            <li class="social_icon"><a href="https://github.com/Lucho2027" target="_blank"><i class="fab fa-github"></i></a></li>
+            <li class="social_icon"><a href="https://www.linkedin.com/in/luis-rodriguez-2167a5114/" target="_blank"><i class="fab fa-linkedin"></i></a> </li>
+            <li class="social_icon"><a href="mailto:luis01.ro@gmail.com"> <i class="fab fa-mailchimp"></i></a> </li>
+        </ul>
+    </footer>
+
     </div>
 
 

@@ -6,9 +6,61 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  color:#D9C6B0;
+  color:whitesmoke;
   font-family: 'Roboto Slab', 'Megrim';
+  background-color:  rgba(63, 47, 33, 1);
  
+ 
+}
+.container{
+  min-height:100%;
+  background: url('coverr-sunrise-1563948708950.jpg');
+  background-size: stretch;
+  background-repeat: repeat;
+  justify-content: center;
+}
+a{
+  list-style: none;
+  text-decoration: none;
+  color:whitesmoke;
+}
+
+
+
+div.sticky {
+  display: flex;
+  position: sticky;
+  justify-content: flex-end;
+  top: 0;
+  background-color: rgba(63, 47, 33, 1);
+  padding: 5px;
+  font-size: 16px;
+  z-index: 11;
+  width:200px;
+  justify-content: center;
+  border-radius: 3px;
+}
+div.sticky:hover{
+  background-color:rgba(216, 198, 175, 1);
+  border:0;
+  color: #402F21;
+}
+a:hover{
+  list-style: none;
+  text-decoration: none;
+  color:#BF372A;
+}
+
+div.gm-style-iw.gm-style-iw-c{
+  background-color:  rgba(63, 47, 33, 0.80);
+  padding: 10px;
+}
+
+div.gm-style-iw-d{
+  
+  width:100px;
+  height:50px;
+  font-family: 'Roboto Slab';
 }
 
 .hidden{
@@ -16,8 +68,17 @@ html, body {
 
 }
 
+#result{
+  display:flex;
+  flex-direction: column;
+  background-color:  rgba(63, 47, 33, 0.80);
+  width:100%; 
+}
+
+
 .tooltip{
-  width:100px;
+  height:100px;
+  
 }
 
 h1, h2, h3 {
@@ -31,43 +92,210 @@ h1, p, #result{
 fieldset{
   z-index: 10;
   border:  0px;
+  padding:0px;
+  
 
 }
-.intro{
-  z-index: 10;
-  background-color:  rgba(63, 47, 33, 0.60);
-  padding: 25px;
-}
-
 .container{
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-wrap: wrap;
   z-index: 10;
+  width: 100%;
+   
+}
+.intro{
+  display:flex;
+  background-color: rgba(63, 47, 33, 0.60);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-wrap: wrap;
+  padding:20px;
+  width:100%;
+
+
+}
+input{
+  height:30.8px;
+  
+}
+h1{
+  background-color:rgba(216, 198, 175, 1);
+  color: #402F21;
+  padding:5px;
+}
+
+input.location-name{
+  width: 220px;
+  border:0px;
+border-radius: 3px;
+  padding:2px;
+  margin:10px;
+  justify-content: center;
+}
+input.location-name:hover{
+  border:#BF372A 1px solid;
+  border-radius: 3px;
+}
+input.button{
+  background-color:rgba(216, 198, 175, 1);
+  border:0;
+  color: #402F21;
+  font-family: 'Roboto Slab';
+  border-radius: 3px;
+  width: 200px;
+  font-size: 16px;
+
+}
+input.button:hover{
+  color:whitesmoke;
+  background-color: #BF372A;
+  border:#D9C6B0 1px solid;
+  animation-duration: 1.5s;
+  animation-delay:0s;
+ animation-iteration-count: infinite;
+}
+
+ul{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  list-style: none;
+
+  
+}
+
+ul.places-result{
+  display:flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+ul#result-weather{
+  display:flex;
+  flex-direction: column;
+  padding: 0;
+
+}
+
+ul>li{
+  padding: 10px;
+  text-align: center;
+  margin-bottom: 5px;
+  
+}
+
+
+footer{
+  position:sticky;
+  bottom: 0;
+  background-color: #402F21;
+  height:30px;
+  width:100%;
+  z-index:12;
+  }
+  
+  
+  footer>ul{
+    display:flex;
+    list-style-type: none;
+    margin:0;
+    justify-content: space-evenly;
+  }
+  
+  footer>ul>li{
+     
+    justify-content: space-evenly;
+    justify-content: right;
+    padding: 5px;
+  
+  }
+  footer>ul>li:hover{
+     color:#BF372A;
+  
+    }
+  .social{
+    padding:0;
+  }
+
+  video{
+    display:none;
+  }
+
+@media (min-width: 520px){
+ 
+  body{
+    
+    height: 100%;
+
+  }
+ 
+ form{
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   text-align: center;
+   background-color:  rgba(63, 47, 33, 0.80);
+   padding:50px;
+   margin:25px;
+   border-radius: 3px;
+
+ }
+ 
+
+ .intro>h1{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding:20px;
+  font-size: 56px;
+  border-radius: 3px;
+  
+
+ }
+ .tooltip{
+  height:250px;
+  width:250px;
   
   
 }
-video{
 
+ 
+
+ 
+
+  
+#weather{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-wrap: wrap;
+
+
+}
+  
+  video{
+    display:flex;
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: inherit 1;
+    z-index: inherit 2;
+
   
 }
-
-@media (max-width: 520px){
-
-  video{
-    display:none;
-
-  }
-  .container{
-    min-height:100%;
-    background: url('https://i.imgur.com/pvLDTDQ.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
+ 
 
 
 }
