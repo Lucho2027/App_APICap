@@ -11,9 +11,9 @@ You can find Park finder at  https://lucho2027.github.io/ParkFinder/
 
 
 ## Summary
-Park Finder has been created to help the user find parks and trails together with a current weather condition for users that are not familiar with an location, town or city of interest. 
+Park Finder has been created to help the user find parks and trails in an specified area. This  together with a current weather condition will help users that are not familiar with a location, town or city be ready to go on an adventure outdoor. 
 
-It can help travelers identify parks and trails in the area in a town with which they are not familiar with. 
+
 
 
 ## Technical
