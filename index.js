@@ -1,6 +1,9 @@
 'use strict'
+// API Keys to be able to GET Info from their endpoint
 const openWeatherKey = '527be69af9e0687cce86953198b12581'
 const mapsKey = 'AIzaSyDZO7BmldQ7TPGohXTa-PxNaoF81D7Ofuw'
+
+//This function initializes the APP
 function startApp() {
   watchForm()
   $('#result').hide();
@@ -9,6 +12,10 @@ function startApp() {
 
 
 }
+
+//This function will fetch infromation from OpenWeather API and provide local weather information
+// of the area that the user search. If there is a problem or there is a typo introduced on the 
+//search bar the APP will prompt the user to search again.
 function getWeather(location) {
   const toFetch = `https://api.openweathermap.org/data/2.5/weather?q=${location},US&APPID=${openWeatherKey}`
   fetch(toFetch)
@@ -27,15 +34,18 @@ function getWeather(location) {
 
     })
     .catch(err => {
-      console.log(err)
+      
       $('#js-error-message').text(`Hey the location was not found! Try Again!`);
       $('#result').hide();
     });
 
-  console.log('getWeather loaded')
+  
 
 }
 
+
+// This function displays the desired information from the request made to the OpenWeather API
+//It will also Append the information into the DOM
 function displayWeather(data) {
   var convToF = Math.round(parseInt((`${data.main.temp}`) - 273.15) * (9 / 5) + 32);
   $('#result-weather').empty();
@@ -48,11 +58,12 @@ function displayWeather(data) {
 
   );
 
-  console.log(data);
-  console.log('renderWeather loaded');
+  
 }
 
-
+// This section below is to render the map in addition the request made
+//to google maps API will return the specified type of location as 
+// specified by request = type: 'park' 
 var map;
 var service;
 var infowindow;
@@ -61,7 +72,7 @@ function initMap(location) {
   var unitedStates = new google.maps.LatLng(37.0902, 95.7129);
 
   infowindow = new google.maps.InfoWindow();
-  console.log(document.getElementById('map-area'))
+  
   map = new google.maps.Map(
 
     document.getElementById('map-area'), { center: unitedStates, zoom: 13 });
@@ -92,7 +103,7 @@ function initMap(location) {
   });
 
 
-  console.log('initMap Loaded')
+  
 
 
 }
@@ -114,7 +125,7 @@ function createMarker(place) {
   });
 
   google.maps.event.addListener(marker, 'click', function () {
-    console.log(place)
+    
     let toolTipContent = ''
     if (place.photos && place.photos.length > 0) {
 

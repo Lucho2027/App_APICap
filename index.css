@@ -8,7 +8,7 @@ html, body {
   padding: 0;
   color:whitesmoke;
   font-family: 'Roboto Slab', 'Megrim';
-  background-color:  rgba(63, 47, 33, 1);
+  
  
  
 }
@@ -109,7 +109,6 @@ fieldset{
 }
 .intro{
   display:flex;
-  background-color: rgba(63, 47, 33, 0.60);
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -194,7 +193,10 @@ ul>li{
 
 footer{
   position:sticky;
-  bottom: 0;
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+   bottom: 0;
   background-color: #402F21;
   height:30px;
   width:100%;
@@ -203,18 +205,23 @@ footer{
   
   
   footer>ul{
-    display:flex;
-    list-style-type: none;
-    margin:0;
-    justify-content: space-evenly;
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin:0;
+  justify-content: space-evenly;
   }
   
   footer>ul>li{
-     
-    justify-content: space-evenly;
-    justify-content: right;
-    padding: 5px;
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 5px;
   
+  }
+  footer>p{
+    font-size: 8px;
+    margin: 0px;
   }
   footer>ul>li:hover{
      color:#BF372A;
@@ -264,7 +271,7 @@ footer{
  }
  .tooltip{
   height:250px;
-  width:250px;
+  width:auto;
   
   
 }
